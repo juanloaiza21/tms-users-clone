@@ -1,5 +1,8 @@
 {
   "name": "tms-users",
+  "jest": {
+    "verbose": true
+  },
   "version": "1.0.0",
   "description": "Api manager users",
   "main": "server.js",
