@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 
+//enviroments
+  require("dotenv").config();
 //routes
 
 app.get('/', (req, res) => {
