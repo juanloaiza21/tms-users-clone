@@ -1,0 +1,21 @@
+{
+  "name": "tms-users",
+  "version": "1.0.0",
+  "description": "Api manager users",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:apicreatelabs/technical-micro-services/tms-users.git"
+  },
+  "keywords": [
+    "Api",
+    "Users",
+    "Apicreate"
+  ],
+  "author": "Apicreate <apicreatecol@gmail.com>",
+  "license": "MIT"
+}
