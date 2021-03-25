@@ -1,7 +1,8 @@
 {
   "name": "tms-users",
   "jest": {
-    "verbose": true
+    "collectCoverage": true,
+    "collectCoverageFrom": ["src/**/*.{js,jsx}"]
   },
   "version": "1.0.0",
   "description": "Api manager users",
