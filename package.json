@@ -2,7 +2,9 @@
   "name": "tms-users",
   "jest": {
     "collectCoverage": true,
-    "collectCoverageFrom": ["src/**/*.{js,jsx}"]
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ]
   },
   "version": "1.0.0",
   "description": "Api manager users",
@@ -24,6 +26,7 @@
   "author": "Apicreate <apicreatecol@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "jest": "^26.6.3",
     "nodemon": "^2.0.7"
   },
   "dependencies": {
