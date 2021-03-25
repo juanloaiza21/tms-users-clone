@@ -16,6 +16,7 @@ router.post("/create", async (req, res) => {
         Nombre: req.body.Nombre,
         Direccion: req.body.direccion,
         Tel: req.body.tel,
+        kinduser: req.body.tu,
         })
         await post.save()
         res.status(200).send({message: "Usuario creado"})       
