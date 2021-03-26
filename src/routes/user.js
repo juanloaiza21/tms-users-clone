@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 const User = require('../models/models');
-const { route } = require("./auth");
 
 router.post("/create", async (req, res) => {
 	try {
