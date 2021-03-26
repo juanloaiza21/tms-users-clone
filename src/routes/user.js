@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const User = require('../models/models');
+const { route } = require("./auth");
 
 router.post("/create", async (req, res) => {
 	try {
@@ -19,6 +20,20 @@ router.post("/create", async (req, res) => {
         console.log(error);
         res.status(401).json("Error")
         }
+});
+
+router.post('/login',(req, res) => {
+        //este daniel
+        let user =  req.user
+        let password = req.password 
+});
+
+router.post('/preregister',(req, res) => {
+        // este es el que debe hacer juan
+});
+
+router.post('/resetpassword',(req, res) => {
+        //este daniel
 });
 
 module.exports = router;
