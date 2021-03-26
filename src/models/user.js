@@ -9,4 +9,4 @@ const schema = mongoose.Schema({
     kindUser: String,
 })
 
-module.exports = mongoose.model("comiagrousers", schema);
+module.exports = mongoose.model("users", schema);

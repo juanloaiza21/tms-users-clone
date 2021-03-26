@@ -2,14 +2,20 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user')
 
 let login = async (req, res) => {
-    //buscar usuario
+
     let user = req.body.user
     let password = req.body.password
-    // Prueba
-    const userData = await User.findOne({ user })
 
-    if (user === userData.user && password === userData.password) {
-        jwt.sign({ user: user }, process.env.KEY, { expiresIn: '32s' }, (error, token) => {
+    //const userData = await User.findOne({ user })
+
+    if (user === 'jorge' && password === 'jorge') {
+        userData = {
+            user: 'jorge',
+            company: 'comiagro',
+            role: 'admin'
+
+        }
+        jwt.sign({ user: userData },process.env.KEY, { expiresIn: '32s' }, (error, token) => {
             res.json({
                 token
             })
@@ -20,8 +26,6 @@ let login = async (req, res) => {
     }
 }
 
-
-//Authorization: Bearer <token>
 function verifyToken(req, res, next) {
     console.log(req.headers);
     let bearHeader = req.headers['authorization']
@@ -31,7 +35,10 @@ function verifyToken(req, res, next) {
         req.token = bearToken
         next();
     } else {
-        res.sendStatus(403);
+        res.status(400).send({ error:{
+            token: "Invalid"
+        }
+    });
     }
 }
 
@@ -43,13 +50,14 @@ function refresh(req, res) {
     if ((refreshToken in refreshTokens) && (refreshTokens[refreshToken] == username)) {
         var user = {
             'username': 'jorge',
+            'company':'comiagro',
             'role': 'admin'
         }
         var token = jwt.sign(user, process.env.KEY, { expiresIn: 300 })
         res.json({ token: 'JWT ' + token })
     }
     else {
-        res.send(401)
+        res.status(500).send({ error: "boo:(" });
     }
 }
 
