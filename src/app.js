@@ -7,11 +7,11 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-const appRoutes = require("./routes/auth");
-const usersRoutes = require("./routes/user");
+const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
 
 app.use('/auth', authRoutes);
-app.use('/users', appRoutes);
+app.use('/users', userRoutes);
 
 
 module.exports = app;
