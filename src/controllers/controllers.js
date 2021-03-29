@@ -1,4 +1,6 @@
-exports.registerUser = []
+exports.registerUser = [
+    
+]
 exports.preregister = []
 exports.recoveryPassword = []
 exports.login = []
