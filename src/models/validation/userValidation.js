@@ -19,5 +19,5 @@ const userResetpasswordRules = () => {
 
 module.exports = {
     userRules: userRegisterRules,
-    resetPasswordRules:userResetpasswordRules,
+    resetPasswordRules: userResetpasswordRules,
 }
