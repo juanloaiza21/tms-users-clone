@@ -1,5 +1,5 @@
 responseData = (req, res) => {
-    if (req.objects.info.status === 200) {
+    if (req.objects.info.status === 200 || req.objects.info.status === 201 ) {
         res.json({
             info: {
                 status: 200,

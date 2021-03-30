@@ -1,7 +1,7 @@
 const libFirebase = require('../libs/firebase') 
 
 async function create(data){
-    let result =  await libFirebase.createUsers(data);
+    let result =  await libFirebase.insert('users',data);
     return result;
 }
 
