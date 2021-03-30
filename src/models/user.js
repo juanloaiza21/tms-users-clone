@@ -1,4 +1,5 @@
-const { check } = require("express-validator"); 
+const { app } = require("firebase-admin")
+const { check, validationResult } = require('express-validator');
 
 function preRegisterSchema(data){
     let infoData = {
@@ -11,15 +12,37 @@ function preRegisterSchema(data){
     return infoData
 }
 
-const userRegisterRules = () => {
-  return [
-      check("id").isInt(),
-      check("email").isEmail(),
-      check("name").isString(),
-      check("address").isString(),
-      check("phoneNumber").isMobilePhone(),
-    ];
-};
+const userRegisterRules = {
+  id: {
+      in: ['body'],
+      isNumeric:true,
+      notEmpty: true,
+      isLength: {
+          errorMessage: 'nit must be betwen 5 an 30 characters',
+          options: { min: 5, max: 30 },
+      },
+  },
+  name: {
+      in: ['body'],
+      notEmpty: true,
+      isLength:{
+          erroMessage: `Name must be at least 5 characters`,
+          options: {min:5},
+      }
+  },
+  address:{
+      in: [`body`],
+      notEmpty: true,
+  },
+  email: {
+      in: [`body`],
+      notEmpty: true,
+  },
+  phoneNumber: {
+      in: [`body`],
+      notEmpty: true,
+  }
+}
 
 const userResetpasswordRules = () => {
   return [
@@ -27,9 +50,50 @@ const userResetpasswordRules = () => {
     ];
 };
 
+const newUserRules = {
+  id: {
+      in: ['body'],
+      isNumeric:true,
+      notEmpty: true,
+      isLength: {
+          errorMessage: 'nit must be betwen 5 an 30 characters',
+          options: { min: 5, max: 30 },
+      },
+  },
+  name: {
+      in: ['body'],
+      notEmpty: true,
+      isLength:{
+          erroMessage: `Name must be at least 5 characters`,
+          options: {min:5},
+      }
+  },
+  address:{
+      in: [`body`],
+      notEmpty: true,
+  },
+  email: {
+      in: [`body`],
+      notEmpty: true,
+  },
+  phoneNumber: {
+      in: [`body`],
+      notEmpty: true,
+  },
+  password: {
+    in: [`body`],
+    notEmpty: true,
+    isLength:{
+      errorMessage: `Password must be at least 8 characters`,
+      options: {min:8, max:64}
+    }
+  }
+}
 
-  module.exports = {
+
+module.exports = {
     register: preRegisterSchema,
     userRules: userRegisterRules,
     resetPasswordRules: userResetpasswordRules,
+    newUser: newUserRules
   };

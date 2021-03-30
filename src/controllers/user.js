@@ -10,7 +10,13 @@ async function recovery(data){
     return result;
 }
 
+async function newUser(data) {
+    let result =  await libFirebase.createUsers(data)
+    return result;
+}
+
 module.exports = {
     create,
-    recovery
+    recovery,
+    newUser
 }

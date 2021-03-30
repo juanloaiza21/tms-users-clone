@@ -8,7 +8,12 @@ exports.registerUser = [
     userMiddleware.createUsers,
     responseMiddelware.responseData
 ]
-exports.preregister = []
+exports.preregister = [
+    validateDataMiddelware.validator,
+    validateDataMiddelware.format,
+    userMiddleware.newUser,
+    responseMiddelware.responseData
+]
 
 exports.recoveryPassword = [
     validateDataMiddelware.validator,

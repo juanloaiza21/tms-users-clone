@@ -10,7 +10,13 @@ async function resetPassword(req, res, next) {
     next();
 }
 
+async function newUser(req, res, next) {
+    req.objects = await userController.newUser(req.objects.data)
+    next();
+}
+
 module.exports = {
     createUsers,
-    resetPassword
+    resetPassword,
+    newUser
 }
