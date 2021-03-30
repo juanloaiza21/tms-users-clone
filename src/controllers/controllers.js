@@ -10,6 +10,7 @@ const responseMiddelware = require('../middlewares/responses')
 // ]
 
 exports.registerUser = [    
+    validateDataMiddelware.validator,
     validateDataMiddelware.format,
     userMiddleware.createUsers,
     responseMiddelware.responseData
@@ -17,6 +18,7 @@ exports.registerUser = [
 exports.preregister = []
 
 exports.recoveryPassword = [
+    validateDataMiddelware.validator,
     validateDataMiddelware.format,    
     userMiddleware.resetPassword,
     responseMiddelware.responseData

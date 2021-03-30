@@ -6,7 +6,7 @@ async function create(data){
 }
 
 async function recovery(data){
-    let result =  await libFirebase.resetPasword(data);
+    let result =  await libFirebase.recovery(data);
     return result;
 }
 
