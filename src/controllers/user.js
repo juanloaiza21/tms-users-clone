@@ -5,6 +5,12 @@ async function create(data){
     return result;
 }
 
+async function recovery(data){
+    let result =  await libFirebase.resetPasword(data);
+    return result;
+}
+
 module.exports = {
-    create
+    create,
+    recovery
 }

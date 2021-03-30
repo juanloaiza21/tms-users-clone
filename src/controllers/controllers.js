@@ -15,6 +15,13 @@ exports.registerUser = [
     responseMiddelware.responseData
 ]
 exports.preregister = []
-exports.recoveryPassword = []
+
+exports.recoveryPassword = [
+    validateDataMiddelware.format,    
+    userMiddleware.resetPassword,
+    responseMiddelware.responseData
+
+]
+
 exports.login = []
 exports.auth = []
