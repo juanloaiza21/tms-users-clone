@@ -11,6 +11,13 @@ const userRegisterRules = () => {
       ];
 };
 
+const userResetpasswordRules = () => {
+    return [
+        check("email").isEmail(),
+      ];
+  };
+
 module.exports = {
     userRules: userRegisterRules,
+    resetPasswordRules:userResetpasswordRules,
 }

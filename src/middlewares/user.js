@@ -5,6 +5,12 @@ async function createUsers(req, res, next) {
     next();
 }
 
+async function resetPassword(req, res, next) {
+    req.objects.data = userController.recovery(req.objects.data)
+    next();
+}
+
 module.exports = {
-    createUsers
+    createUsers,
+    resetPassword
 }
