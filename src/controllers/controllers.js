@@ -14,13 +14,16 @@ exports.preregister = [
     userMiddleware.newUser,
     responseMiddelware.responseData
 ]
-
 exports.recoveryPassword = [
     validateDataMiddelware.validator,
     validateDataMiddelware.format,    
     userMiddleware.resetPassword,
     responseMiddelware.responseData
 
+]
+exports.compareData =[
+    validateDataMiddelware.validator,
+    validateDataMiddelware.format,
 ]
 
 exports.login = []

@@ -15,8 +15,14 @@ async function newUser(data) {
     return result;
 }
 
+async function compareData(data) {
+    let result =  await libFirebase.getDataNoResponse(`users`, `${data}`);
+    return result;
+}
+
 module.exports = {
     create,
     recovery,
-    newUser
+    newUser,
+    compareData,
 }
