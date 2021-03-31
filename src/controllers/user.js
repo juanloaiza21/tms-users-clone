@@ -15,7 +15,7 @@ async function recovery(data){
     return result;
 }
 
-async function newUser(data) {
+async function createUserAuth(data) {
     let result =  await libFirebase.createUsers(data)
     return result;
 }
@@ -24,26 +24,20 @@ async function compareData(data) {
     let result =  await libFirebase.getDataNoResponse(`users`, `${data}`);
     return result;
 }
-async function compareData(data, res, req) {
-    console.log(`Lo que llega a la función es ${data}`);
-    let result =  await libFirebase.getDataNoResponse(`users`, `${data.id}`);
-    console.log(`La que sale de la función es ${result}`);    
-    if (result===data) {
-            console.log(result);
-            let result1 =validators.validator(result);
-            let result2 = validator.format(result1)
-            return newUser(result2);
-        } else {
-        result=undefined
-        return newUser (result);
-        }
- 
+async function verifyUser(data) {
+    let verify  = await libFirebase.getData('users',data)
+    if( verify.info.status == 200){
+        return verify.data
+    }
+    else{
+        return null;
+    } 
 }
 
 module.exports = {
     create,
     login,
     recovery,
-    newUser,
-    compareData,
+    createUserAuth,
+    verifyUser,
 }
