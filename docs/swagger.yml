@@ -1,13 +1,115 @@
 openapi: '3.0.2'
 info:
-  title: API Title
-  version: '1.0'
+  title: Technical Micro Services Authentication Apicreate
+  version: '1.0.0'
 servers:
-  - url: https://api.server.test/v1
+  - url: http://localhost:3000
+  - url: https://apicreate.com:3000
+tags:
+- name: "Ejemplo"
+  description: "Services Authentication Apps"
+- name: "Users"
+  description: "Service Apps"
 paths:
-  /test:
-    get:
-      responses:
-        '200':
-          description: OK
+  /users/login:
+    post:
+      tags:
+      - "Users"
+      summary: "Login Method"
+      description: "Endpoint Login Password"
+      operationId: "Login Users"
+      requestBody:
+        description: Example Json
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
 
+      responses:
+        "200":
+          description: show data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        '400':
+          description: Error
+
+  /users/recovery:
+    post:
+      tags:
+      - "Users"
+      summary: "Recovery Apps micro services"
+      description: "Endpoint Recovery Password"
+      operationId: "resetPassword"
+      requestBody:
+        description: Example Json
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Recovery'
+
+      responses:
+        "200":
+          description: show data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        '400':
+          description: Error
+
+components:
+  schemas:
+    Recovery:
+      type: object
+      properties:
+        email:
+          type: string
+          example: danielcorralesh@gmail.com
+    
+    Login:
+      type: object
+      properties:
+        email:
+          type: string
+          example: danielcorralesh@gmail.com
+        Password:
+          type: string
+          example: 123456
+    
+    Success: 
+      properties:
+        info:
+          type: object
+          properties: 
+            status:
+              type: integer  
+              example: 200
+            urlServices:  
+              type: string
+              example: localhost:3000
+            path: 
+              type: string
+              example: /api/endpoint
+            message: 
+              type: string
+              example: 😀 message API                      
+        result: 
+          type: string
+          example: data   
+
+    Errors:
+      type: object
+      properties:
+        errors:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 400
+            descriptions:
+              type: array
+              example: ["Format No Soport"]

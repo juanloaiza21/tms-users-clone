@@ -44,11 +44,28 @@ const userRegisterRules = {
   }
 }
 
-const userResetpasswordRules = () => {
-  return [
-      check("email").isEmail(),
-    ];
-};
+const loginUserRules = {
+    email: {
+        in: [`body`],
+        notEmpty: true,
+    },
+    password: {
+      in: [`body`],
+      notEmpty: true,
+      isLength:{
+        errorMessage: `Password must be at least 8 characters`,
+        options: {min:8, max:64}
+      }
+    }
+  }
+
+const userResetpasswordRules = {
+  email: {
+      in: [`body`],
+      notEmpty: true,
+  }
+}
+
 
 const newUserRules = {
   id: {
@@ -127,6 +144,7 @@ const compareDataRules = {
 module.exports = {
     register: preRegisterSchema,
     userRules: userRegisterRules,
+    loginRules: loginUserRules,
     resetPasswordRules: userResetpasswordRules,
     newUser: newUserRules,
     compareData: compareDataRules

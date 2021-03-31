@@ -21,6 +21,15 @@ exports.recoveryPassword = [
     responseMiddelware.responseData
 
 ]
+
+exports.loginUser = [
+    validateDataMiddelware.validator,
+    validateDataMiddelware.format,    
+    userMiddleware.loginUser,
+    responseMiddelware.responseData
+
+]
+
 exports.compareData =[
     validateDataMiddelware.validator,
     validateDataMiddelware.format,
