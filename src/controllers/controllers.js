@@ -11,7 +11,7 @@ exports.registerUser = [
 exports.preregister = [
     validateDataMiddelware.validator,
     validateDataMiddelware.format,
-    userMiddleware.newUser,
+    userMiddleware.compareData,
     responseMiddelware.responseData
 ]
 exports.recoveryPassword = [
