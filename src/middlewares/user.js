@@ -19,10 +19,16 @@ async function newUser(req, res, next) {
     req.objects = await userController.newUser(req.objects.data)
     next();
 }
+async function compareData(req, res, next) {
+    console.log(req.objects.data);
+    req.objects = await userController.compareData(req.objects.data)
+    next();
+}
 
 module.exports = {
     createUsers,
     resetPassword,
+    compareData,
     loginUser,
     newUser
 }
