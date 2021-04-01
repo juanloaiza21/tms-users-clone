@@ -60,6 +60,57 @@ paths:
                 $ref: "#/components/schemas/Success"
         '400':
           description: Error
+  
+  /users/preregister:
+    post:
+      tags:
+      - "Users"
+      summary: "Preregister"
+      description: "Precharged data that will works as a flag on the register endpoint"
+      operationId: "Preregister Users"
+      requestBody:
+        description: Example Json
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Preregister'
+
+      responses:
+        "200":
+          description: show data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        '400':
+          description: Error
+  
+          
+  /users/register:
+    post:
+      tags:
+      - "Users"
+      summary: "Register"
+      description: "Compare the data that you are writting down with the one precharged on preregister"
+      operationId: "Register Users"
+      requestBody:
+        description: Example Json
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+
+      responses:
+        "200":
+          description: show data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        '400':
+          description: Error
 
 components:
   schemas:
@@ -79,7 +130,48 @@ components:
         Password:
           type: string
           example: 123456
+
+    Preregister:
+      type: object
+      properties:
+        email:
+          type: string
+          example: example@example.com
+        id:
+          type: string
+          example: 123456789
+        name:
+          type: string
+          example: Juan David Loaiza Reyes
+        address:
+          type: string
+          example: New York, Empire state
+        phoneNumber:
+          type: string
+          example: +1000000000
     
+    Register:
+      type: object
+      properties:
+        email:
+          type: string
+          example: example@example.com
+        id:
+          type: string
+          example: 123456789
+        name:
+          type: string
+          example: Juan David Loaiza Reyes
+        address:
+          type: string
+          example: New York, Empire state
+        phoneNumber:
+          type: string
+          example: +1000000000
+        password:
+          type: string
+          example: Securepassword123      
+
     Success: 
       properties:
         info:
@@ -100,7 +192,6 @@ components:
         result: 
           type: string
           example: data   
-
     Errors:
       type: object
       properties:
