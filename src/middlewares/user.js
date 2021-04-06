@@ -5,8 +5,8 @@ async function createUsers(req, res, next) {
     next();
 }
 
-async function loginUser(req, res, next) {
-    req.objects = await userController.login(req.objects.data)
+async function signInUser(req, res, next) {
+    req.objects = await userController.signInUser(req.objects.data)
     next();
 }
 
@@ -23,6 +23,6 @@ async function newUser(req, res, next) {
 module.exports = {
     createUsers,
     resetPassword,
-    loginUser,
+    signInUser,
     newUser
 }

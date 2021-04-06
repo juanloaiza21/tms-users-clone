@@ -25,7 +25,7 @@ exports.recoveryPassword = [
 exports.loginUser = [
     validateDataMiddelware.validator,
     validateDataMiddelware.format,    
-    userMiddleware.loginUser,
+    userMiddleware.signInUser,
     responseMiddelware.responseData
 
 ]

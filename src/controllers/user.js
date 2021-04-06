@@ -5,8 +5,8 @@ async function create(data){
     return result;
 }
 
-async function login(data){
-    let result =  await libFirebase.login(data);
+async function signInUser(data){
+    let result =  await libFirebase.signIn(data);
     return result;
 }
 
@@ -27,7 +27,7 @@ async function compareData(data) {
 
 module.exports = {
     create,
-    login,
+    signInUser,
     recovery,
     newUser,
     compareData,
