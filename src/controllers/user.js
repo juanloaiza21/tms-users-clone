@@ -35,6 +35,7 @@ async function verifyUser(data) {
 
 async function preregisterFiles(data) {
     let uri =  `${process.env.URL_FILES}/files/read/excel`
+    //let uri =  `${process.env.URL_FILES}/files/read/csv`
     let file = data.data.files.clients.tempFilePath
 
     const formData = new FormData();
