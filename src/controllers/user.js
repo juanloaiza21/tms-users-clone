@@ -1,4 +1,4 @@
-const libFirebase = require('../libs/firebase') 
+const libFirebase = require('../../../libs/firebase') 
 
 async function create(data){
     let result =  await libFirebase.insert('users',data);
@@ -15,7 +15,7 @@ async function recovery(data){
     return result;
 }
 
-async function newUser(data) {
+async function createUserAuth(data) {
     let result =  await libFirebase.createUsers(data)
     return result;
 }
@@ -24,11 +24,20 @@ async function compareData(data) {
     let result =  await libFirebase.getDataNoResponse(`users`, `${data}`);
     return result;
 }
+async function verifyUser(data) {
+    let verify  = await libFirebase.getData('users',data)
+    if( verify.info.status == 200){
+        return verify.data
+    }
+    else{
+        return null;
+    } 
+}
 
 module.exports = {
     create,
     signInUser,
     recovery,
-    newUser,
-    compareData,
+    createUserAuth,
+    verifyUser,
 }

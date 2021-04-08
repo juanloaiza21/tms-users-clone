@@ -3,7 +3,6 @@ const router = express.Router();
 const controllers =  require('../controllers/controllers')
 const { userRules, newUser, resetPasswordRules, loginRules }= require (`../models/user`)
 const {checkSchema} = require('express-validator');
-const {getDataNoResponse} = require (`../libs/firebase`);
  
 router.post('/preregister',checkSchema(userRules),controllers.registerUser);
 router.post('/register',checkSchema(newUser),controllers.preregister);

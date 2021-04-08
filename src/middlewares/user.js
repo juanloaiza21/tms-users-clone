@@ -1,6 +1,6 @@
 const userController = require('../controllers/user');
 
-async function createUsers(req, res, next) {
+async function createUsersBD(req, res, next) {
     req.objects = await userController.create(req.objects.data)
     next();
 }
@@ -15,14 +15,25 @@ async function resetPassword(req, res, next) {
     next();
 }
 
-async function newUser(req, res, next) {
-    req.objects = await userController.newUser(req.objects.data)
+async function createUsers(req, res, next) {
+    req.objects = await userController.createUserAuth(req.objects.data)
     next();
+}
+async function verifyUser(req, res, next) {
+    req.objects.verify =  await userController.verifyUser(req.objects.data)
+    req.objects.data.displayName = req.objects.data.name 
+    if(req.objects.verify.id === req.objects.data.id){
+    next();
+    }
+    else{
+    res.status(400);
+    }
 }
 
 module.exports = {
-    createUsers,
+    createUsersBD,
     resetPassword,
     signInUser,
-    newUser
+    verifyUser,
+    createUsers
 }
