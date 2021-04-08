@@ -89,6 +89,10 @@ const newUserRules = {
       in: [`body`],
       notEmpty: true,
   },
+  notificationsWhatsapp:{
+      in: [`body`],
+      notEmpty: true,
+  },
   password: {
     in: [`body`],
     notEmpty: true,

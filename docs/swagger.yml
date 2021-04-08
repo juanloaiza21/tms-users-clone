@@ -167,7 +167,10 @@ components:
           example: +1000000000
         password:
           type: string
-          example: Securepassword123      
+          example: Securepassword123
+        notificationsWhatsapp:
+          type: boolean
+          example: true      
 
     Success: 
       properties:
