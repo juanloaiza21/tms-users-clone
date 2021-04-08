@@ -2,13 +2,22 @@ const userMiddleware =  require('../middlewares/user')
 const validateDataMiddelware = require('../middlewares/validatedata') 
 const responseMiddelware = require('../middlewares/responses')
 
-exports.registerUser = [    
+exports.preregister = [    
     validateDataMiddelware.validator,
     validateDataMiddelware.format,
     userMiddleware.createUsersBD,
     responseMiddelware.responseData
 ]
-exports.preregister = [
+
+exports.preregisterFiles = [    
+   // validateDataMiddelware.validator,
+    validateDataMiddelware.format,
+    userMiddleware.preregisterFiles,
+    userMiddleware.createUsersBD,
+    responseMiddelware.responseData
+]
+
+exports.register = [
     validateDataMiddelware.validator,
     validateDataMiddelware.format,
     userMiddleware.verifyUser,

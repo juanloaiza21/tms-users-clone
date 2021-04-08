@@ -30,10 +30,16 @@ async function verifyUser(req, res, next) {
     }
 }
 
+async function preregisterFiles(req,res,next){
+    req.objects.data = await userController.preregisterFiles(req.files.clients.tempFilePath);
+    next();
+}
+
 module.exports = {
     createUsersBD,
     resetPassword,
     signInUser,
     verifyUser,
-    createUsers
+    createUsers,
+    preregisterFiles
 }

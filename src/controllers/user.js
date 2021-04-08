@@ -1,4 +1,5 @@
-const libFirebase = require('../../../libs/firebase') 
+const libFirebase = require('../../../libs/firebase');
+const axios =  require('axios');
 
 async function create(data){
     let result =  await libFirebase.insert('users',data);
@@ -30,10 +31,21 @@ async function verifyUser(data) {
     } 
 }
 
+async function preregisterFiles(data) {
+    try {
+        const  files = await axios.post(`${process.env.URL_FILES}/api/files/read`,data)
+        return files.data
+    } catch (error) {
+        return null;
+    }
+   
+}
+
 module.exports = {
     create,
     signInUser,
     recovery,
     createUserAuth,
     verifyUser,
+    preregisterFiles
 }

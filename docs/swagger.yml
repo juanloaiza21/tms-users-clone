@@ -86,7 +86,30 @@ paths:
         '400':
           description: Error
   
-          
+  /users/preregisterfiles:
+    post:
+      tags:
+      - "Users"
+      summary: "Preregister Files"
+      description: "Precharged data that will works as a flag on the register endpoint"
+      operationId: "Preregister Users Files"
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/PreregisterFiles"
+      responses:
+        "200":
+          description: show data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        '400':
+          description: Error
+  
   /users/register:
     post:
       tags:
@@ -127,6 +150,15 @@ components:
         email:
           type: string
           example: danielcorralesh@gmail.com
+    
+    PreregisterFiles:
+      type: object
+      properties:
+          clients:
+            type: string
+            format: binary
+            required:
+              - "true"
 
     Preregister:
       type: object
