@@ -30,7 +30,7 @@ const userRegisterRules = {
           options: {min:5},
       }
   },
-  birthday:{
+  birthDay:{
       in: [`body`],
       notEmpty: false,
   },
@@ -85,7 +85,7 @@ const newUserRules = {
           options: {min:5},
       }
   },
-  birthday:{
+  birthDay:{
       in: [`body`],
       notEmpty: false,
   },

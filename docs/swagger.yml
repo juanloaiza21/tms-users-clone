@@ -143,7 +143,7 @@ components:
         name:
           type: string
           example: Juan David Loaiza Reyes
-        address:
+        birthDay:
           type: string
           example: New York, Empire state
         phoneNumber:
@@ -162,7 +162,7 @@ components:
         name:
           type: string
           example: Juan David Loaiza Reyes
-        birthday:
+        birthDay:
           type: string
           example: "2019-07-29"
         phoneNumber:
