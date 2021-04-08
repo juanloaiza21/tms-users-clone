@@ -8,6 +8,6 @@ router.post('/preregister',checkSchema(userRules),controllers.registerUser);
 router.post('/register',checkSchema(newUser),controllers.preregister);
 router.post('/recovery',checkSchema(resetPasswordRules),controllers.recoveryPassword);
 //router.post('/prueba', checkSchema(compareData), controllers.compareData)
-router.post('/login', checkSchema(loginRules), controllers.loginUser);
+router.post('/verification', checkSchema(loginRules), controllers.loginUser);
 
 module.exports = router;

@@ -11,13 +11,13 @@ tags:
 - name: "Users"
   description: "Service Apps"
 paths:
-  /users/login:
+  /users/verification:
     post:
       tags:
       - "Users"
-      summary: "Login Method"
-      description: "Endpoint Login Password"
-      operationId: "Login Users"
+      summary: "verification Email Method"
+      description: "Endpoint verification email"
+      operationId: "Verification Users Email"
       requestBody:
         description: Example Json
         required: true
