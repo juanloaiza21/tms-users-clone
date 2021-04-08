@@ -20,10 +20,6 @@ async function createUserAuth(data) {
     return result;
 }
 
-async function compareData(data) {
-    let result =  await libFirebase.getDataNoResponse(`users`, `${data}`);
-    return result;
-}
 async function verifyUser(data) {
     let verify  = await libFirebase.getData('users',data)
     if( verify.info.status == 200){
