@@ -1,5 +1,7 @@
 const libFirebase = require('../../../libs/firebase');
 const axios =  require('axios');
+const FormData = require('form-data');
+const fs = require('fs');
 
 async function create(data){
     let result =  await libFirebase.insert('users',data);
@@ -32,12 +34,22 @@ async function verifyUser(data) {
 }
 
 async function preregisterFiles(data) {
+    let uri =  `${process.env.URL_FILES}/files/read/excel`
+    let file = data.data.files.clients.tempFilePath
+
+    const formData = new FormData();
+    formData.append('data', fs.createReadStream(file));
     try {
-        const  files = await axios.post(`${process.env.URL_FILES}/api/files/read`,data)
-        return files.data
+        
+    const res = await axios.post(uri, formData, {
+        headers: formData.getHeaders()
+      });
+      console.log(res);
+      return res.data.result
     } catch (error) {
-        return null;
+      console.log(error);  
     }
+  
    
 }
 

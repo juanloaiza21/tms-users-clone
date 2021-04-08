@@ -31,7 +31,7 @@ async function verifyUser(req, res, next) {
 }
 
 async function preregisterFiles(req,res,next){
-    req.objects.data = await userController.preregisterFiles(req.files.clients.tempFilePath);
+    req.objects.data = await userController.preregisterFiles(req.objects);
     next();
 }
 

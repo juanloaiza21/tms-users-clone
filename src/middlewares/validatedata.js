@@ -17,7 +17,9 @@ function formatData(req, res, next) {
     switch (req.method) {
         case 'POST':
             req.objects.data = req.body
-            
+            if(req.files){
+                req.objects.data.files = req.files
+            }
             break;
         case 'GET':
             req.objects.data = req.query
