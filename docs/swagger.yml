@@ -127,9 +127,6 @@ components:
         email:
           type: string
           example: danielcorralesh@gmail.com
-        Password:
-          type: string
-          example: 123456
 
     Preregister:
       type: object

@@ -48,14 +48,6 @@ const loginUserRules = {
     email: {
         in: [`body`],
         notEmpty: true,
-    },
-    password: {
-      in: [`body`],
-      notEmpty: true,
-      isLength:{
-        errorMessage: `Password must be at least 8 characters`,
-        options: {min:8, max:64}
-      }
     }
   }
 
