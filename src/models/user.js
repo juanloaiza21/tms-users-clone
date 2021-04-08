@@ -30,9 +30,9 @@ const userRegisterRules = {
           options: {min:5},
       }
   },
-  address:{
+  birthday:{
       in: [`body`],
-      notEmpty: true,
+      notEmpty: false,
   },
   email: {
       in: [`body`],
@@ -85,9 +85,9 @@ const newUserRules = {
           options: {min:5},
       }
   },
-  address:{
+  birthday:{
       in: [`body`],
-      notEmpty: true,
+      notEmpty: false,
   },
   email: {
       in: [`body`],

@@ -162,9 +162,9 @@ components:
         name:
           type: string
           example: Juan David Loaiza Reyes
-        address:
+        birthday:
           type: string
-          example: New York, Empire state
+          example: "2019-07-29"
         phoneNumber:
           type: string
           example: +1000000000
