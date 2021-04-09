@@ -16,7 +16,6 @@ exports.preregisterFiles = [
     fileMiddelware.verifyTypeFileRoute,
     fileMiddelware.sendFile,
     userMiddleware.preregisterFiles,
-    userMiddleware.createUsersBD,
     responseMiddelware.responseData
 ]
 
