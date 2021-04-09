@@ -33,16 +33,15 @@ async function verifyUser(data) {
 }
 
 async function preregisterFiles(data){
-    let inserts = []
+    let noInserts = {}
     for (let index = 0; index < data.length; index++) {
         const element = data[index];
         let insert = await libFirebase.insert(table,element);
-        if(insert.info.status === 201){
-            inserts.push(element.id)
+        if(insert.info.status === 400){
+            noInserts.push(element.id)
         }
     }
-    console.log(inserts);
-    console.log("tomalo");
+    return "save"
 }
 
 
