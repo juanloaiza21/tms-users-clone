@@ -1,10 +1,9 @@
 const libFirebase = require('../../../libs/firebase');
-const axios =  require('axios');
-const FormData = require('form-data');
-const fs = require('fs');
+
+let table =  'users'
 
 async function create(data){
-    let result =  await libFirebase.insert('users',data);
+    let result =  await libFirebase.insert(table,data);
     return result;
 }
 
@@ -24,7 +23,7 @@ async function createUserAuth(data) {
 }
 
 async function verifyUser(data) {
-    let verify  = await libFirebase.getData('users',data)
+    let verify  = await libFirebase.getData(table,data)
     if( verify.info.status == 200){
         return verify.data
     }
@@ -33,26 +32,19 @@ async function verifyUser(data) {
     } 
 }
 
-async function preregisterFiles(data) {
-    let uri =  `${process.env.URL_FILES}/files/read/excel`
-    //let uri =  `${process.env.URL_FILES}/files/read/csv`
-    let file = data.data.files.clients.tempFilePath
-
-    const formData = new FormData();
-    formData.append('data', fs.createReadStream(file));
-    try {
-        
-    const res = await axios.post(uri, formData, {
-        headers: formData.getHeaders()
-      });
-      console.log(res);
-      return res.data.result
-    } catch (error) {
-      console.log(error);  
+async function preregisterFiles(data){
+    let inserts = []
+    for (let index = 0; index < data.length; index++) {
+        const element = data[index];
+        let insert = await libFirebase.insert(table,element);
+        if(insert.info.status === 201){
+            inserts.push(element.id)
+        }
     }
-  
-   
+    console.log(inserts);
+    console.log("tomalo");
 }
+
 
 module.exports = {
     create,

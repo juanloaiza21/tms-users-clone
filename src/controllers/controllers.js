@@ -1,6 +1,7 @@
-const userMiddleware =  require('../middlewares/user')
-const validateDataMiddelware = require('../middlewares/validatedata') 
-const responseMiddelware = require('../middlewares/responses')
+const userMiddleware =  require('../middlewares/user');
+const validateDataMiddelware = require('../middlewares/validatedata');
+const responseMiddelware = require('../middlewares/responses');
+const fileMiddelware = require('../middlewares/files');
 
 exports.preregister = [    
     validateDataMiddelware.validator,
@@ -12,6 +13,8 @@ exports.preregister = [
 exports.preregisterFiles = [    
    // validateDataMiddelware.validator,
     validateDataMiddelware.format,
+    fileMiddelware.verifyTypeFileRoute,
+    fileMiddelware.sendFile,
     userMiddleware.preregisterFiles,
     userMiddleware.createUsersBD,
     responseMiddelware.responseData
