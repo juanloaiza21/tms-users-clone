@@ -28,7 +28,7 @@ async function verifyUser(req, res, next) {
     }
     else {
         req.objects.data.displayName = req.objects.data.name
-        if (req.objects.verify.id === req.objects.data.id) {
+        if (verify.data.id != req.objects.data.id) {
 
         }
         next();
