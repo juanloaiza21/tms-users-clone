@@ -23,13 +23,7 @@ async function createUserAuth(data) {
 }
 
 async function verifyUser(data) {
-    let verify  = await libFirebase.getData(table,data)
-    if( verify.info.status == 200){
-        return verify.data
-    }
-    else{
-        return null;
-    } 
+    return await libFirebase.getData(table,data)
 }
 
 async function preregisterFiles(data){

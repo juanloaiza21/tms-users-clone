@@ -1,4 +1,5 @@
 const userController = require('../controllers/user');
+const responsesMiddleware = require('./responses');
 
 async function createUsersBD(req, res, next) {
     req.objects = await userController.create(req.objects.data)
@@ -20,17 +21,22 @@ async function createUsers(req, res, next) {
     next();
 }
 async function verifyUser(req, res, next) {
-    req.objects.verify =  await userController.verifyUser(req.objects.data)
-    req.objects.data.displayName = req.objects.data.name 
-    if(req.objects.verify.id === req.objects.data.id){
-    next();
+    let verify = await userController.verifyUser(req.objects.data)
+    if (verify.info.status === 400) {
+        req.objects = verify;
+        responsesMiddleware.responseData(req, res);
     }
-    else{
-    res.status(400);
+    else {
+        req.objects.data.displayName = req.objects.data.name
+        if (req.objects.verify.id === req.objects.data.id) {
+
+        }
+        next();
     }
+
 }
 
-async function preregisterFiles(req,res,next){
+async function preregisterFiles(req, res, next) {
     req.objects = await userController.preregisterFiles(req.objects.data);
     next();
 }
