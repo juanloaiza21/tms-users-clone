@@ -1,4 +1,5 @@
 const userController = require('../controllers/user');
+const libResponses = require('../../../libs/responses');
 const responsesMiddleware = require('./responses');
 
 async function createUsersBD(req, res, next) {
@@ -24,15 +25,17 @@ async function verifyUser(req, res, next) {
     let verify = await userController.verifyUser(req.objects.data)
     if (verify.info.status === 400) {
         req.objects = verify;
-        responsesMiddleware.responseData(req, res);
+        await responsesMiddleware.responseData(req, res);
     }
-    else {
-        req.objects.data.displayName = req.objects.data.name
-        if (verify.data.id != req.objects.data.id) {
-
-        }
+    req.objects.data.displayName = req.objects.data.name
+    if (verify.data.id != req.objects.data.id || verify.data.email != req.objects.data.email) {
+        req.objects = await libResponses.errorsResponse(400, "Data user is incorrect")
+        await responsesMiddleware.responseData(req, res);
+    }
+    else{
         next();
     }
+    
 
 }
 
