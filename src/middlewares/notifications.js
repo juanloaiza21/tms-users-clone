@@ -1,25 +1,12 @@
-const responsesMiddleware = require('./responses');
-const axios = require('axios');
+const notificationsController =  require('../controllers/notifications')
 
-async function sendMail(req, res, next) {
-    let uri = `${process.env.URL_NOTIFICATIONS}/email/send`
-    let data = {
-        to: req.body.email, 
-        subject: "Comiagro Notifications",
-        tittle: "Recuperar Contraseña",
-        data: req.objects.data
-    }
-     try {
-         const result = await axios.post(uri,data)
-        req.objects.data = result.data
-    } catch (error) {
-        req.objects =  result.data
-        responsesMiddleware.responseData(req, res);
-    }
+async function activateEmail(req, res, next) {
+    let result = await notificationsController.activate(req.objects.data)
+    result.data.info.message = "user created " +  result.data.info.message
+    req.objects.response = result.data;
     next();
 }
 
-
 module.exports = {
-    sendMail
+    activate: activateEmail
 }

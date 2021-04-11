@@ -1,50 +1,26 @@
-const userMiddleware =  require('../middlewares/user');
-const validateDataMiddelware = require('../middlewares/validatedata');
-const responseMiddelware = require('../middlewares/responses');
-const fileMiddelware = require('../middlewares/files');
-const notificationsMiddelware = require('../middlewares/notifications');
+const validateMiddleware =  require('../middlewares/validate');
+const userMiddleware = require('../middlewares/user');
+const responseMiddleware = require('../middlewares/response');
+const notificationsMiddleware =  require('../middlewares/notifications');
 
-exports.preregister = [    
-    validateDataMiddelware.validator,
-    validateDataMiddelware.format,
-    userMiddleware.createUsersBD,
-    responseMiddelware.responseData
-]
-
-exports.preregisterFiles = [    
-   // validateDataMiddelware.validator,
-    validateDataMiddelware.format,
-    fileMiddelware.verifyTypeFileRoute,
-    fileMiddelware.sendFile,
-    userMiddleware.preregisterFiles,
-    responseMiddelware.responseData
+exports.preregister = [
+    validateMiddleware.validator,
+    validateMiddleware.formatData,
+    userMiddleware.preregister,
+    responseMiddleware.responseData,
 ]
 
 exports.register = [
-    validateDataMiddelware.validator,
-    validateDataMiddelware.format,
-    userMiddleware.verifyUser,
-    userMiddleware.createUsers,
-    responseMiddelware.responseData
+    validateMiddleware.validator,
+    validateMiddleware.formatData,
+    userMiddleware.register,
+    userMiddleware.registerOtherData,
+    userMiddleware.linkVerificationEmail,
+    notificationsMiddleware.activate,
+    responseMiddleware.responseData
 ]
-exports.recoveryPassword = [
-    validateDataMiddelware.validator,
-    validateDataMiddelware.format,
-    userMiddleware.resetPassword,
-    notificationsMiddelware.sendMail,
-    responseMiddelware.responseData
-
-]
-
-exports.loginUser = [
-    validateDataMiddelware.validator,
-    validateDataMiddelware.format,    
-    userMiddleware.signInUser,
-    responseMiddelware.responseData
-
-]
-
-exports.compareData =[
-    validateDataMiddelware.validator,
-    validateDataMiddelware.format,
+exports.recovery = [
+    validateMiddleware.validator,
+    // validateMiddleware.formatData,
+    // userMiddleware.recoveryPassword
 ]

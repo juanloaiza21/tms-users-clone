@@ -9,16 +9,17 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
+
 app.use(cors());
-app.use(express.static('public'));
+//app.use(express.static('public'));
 
 
-const authRoutes = require("./routes/auth");
+//const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
-app.use('/', express.static('public'));
-app.use('/auth', authRoutes);
+//app.use('/', express.static('public'));
+//app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 
 

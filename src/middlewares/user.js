@@ -1,52 +1,59 @@
-const userController = require('../controllers/user');
-const libResponses = require('../../../libs/responses');
-const responsesMiddleware = require('./responses');
+const userController = require('../controllers/users')
+const responseMiddleware =  require('./response');
 
-async function createUsersBD(req, res, next) {
-    req.objects = await userController.create(req.objects.data)
+async function preregister(req, res, next) {
+    req.objects.response = await userController.preregister(req.objects.data);
     next();
 }
 
-async function signInUser(req, res, next) {
-    req.objects = await userController.signInUser(req.objects.data)
+async function register(req, res, next) {
+    result = await userController.registerUser(req.objects.data);
+    if(result.info.status === 400){
+        req.objects.response =  result;
+        return responseMiddleware.responseData(req,res);
+    } 
+    req.objects.data =  result;
     next();
 }
 
-async function resetPassword(req, res, next) {
-    req.objects = await userController.recovery(req.objects.data)
-    next();
-}
-
-async function createUsers(req, res, next) {
-    req.objects = await userController.createUserAuth(req.objects.data)
-    next();
-}
-async function verifyUser(req, res, next) {
-    let verify = await userController.verifyUser(req.objects.data)
-    if (verify.info.status === 400) {
-        req.objects = verify;
-        await responsesMiddleware.responseData(req, res);
+async function registerOtherData(req, res, next) {
+    let result = await userController.updateDataUser(req.objects.data);
+    if(result.info.status === 400){
+        req.objects.response =  result;
+        return responseMiddleware.responseData(req,res);
     }
-    req.objects.data.displayName = req.objects.data.name
-    if (verify.data.id != req.objects.data.id || verify.data.email != req.objects.data.email) {
-        req.objects = await libResponses.errorsResponse(400, "Data user is incorrect")
-        await responsesMiddleware.responseData(req, res);
-    }
-    else{
-        next();
-    }
-}
-
-async function preregisterFiles(req, res, next) {
-    req.objects = await userController.preregisterFiles(req.objects.data);
+    req.objects.response= result;
+    req.objects.data.save = result;
     next();
 }
+
+async function linkVerificationEmail(req, res, next){
+    let result = await userController.verify(req.objects.data);
+    if(result.info.status === 400){
+        req.objects.response =  result;
+        return responseMiddleware.responseData(req,res);
+    }
+    req.objects.response = result;
+    req.objects.data.link = result.link;
+    req.objects.response.data = req.objects.data
+    next();
+}
+
+async function recoveryPassword(req, res, next) {
+    let result = await userController.recoveryPassword(req.objects.data);
+    if(result.info.status === 400){
+        req.objects.response =  result;
+        return responseMiddleware.responseData(req,res);
+    }
+    req.objects.data = result.otherInfo;
+    next();
+}
+
 
 module.exports = {
-    createUsersBD,
-    resetPassword,
-    signInUser,
-    verifyUser,
-    createUsers,
-    preregisterFiles
+    preregister: preregister,
+    register: register,
+    registerOtherData,
+    linkVerificationEmail:linkVerificationEmail,
+    recoveryPassword: recoveryPassword
 }

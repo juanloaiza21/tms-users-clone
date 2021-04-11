@@ -1,19 +1,21 @@
+const validateDataControllers =  require('../controllers/validate');
+const responseMiddleware = require('./response')
 const {validationResult} = require('express-validator');
 
-function validationData(req, res, next) {
+async function validationData(req, res, next) {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-        return res.status(400).json({
-            errors: errors.array()
-        });
+        req.objects = {};
+        req.objects.response = await validateDataControllers.validateDataError(errors);
+        return responseMiddleware.responseData(req,res);
     }
     next();
 }
 
 function formatData(req, res, next) {
     req.objects = {};
-    req.objects.info = {}
+    req.objects.data = {};
     switch (req.method) {
         case 'POST':
             req.objects.data = req.body
@@ -31,6 +33,6 @@ function formatData(req, res, next) {
 }
 
 module.exports = {
-    validator: validationData,
-    format: formatData
+    formatData,
+    validator: validationData
 }
