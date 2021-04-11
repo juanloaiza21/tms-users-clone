@@ -2,6 +2,7 @@ const userMiddleware =  require('../middlewares/user');
 const validateDataMiddelware = require('../middlewares/validatedata');
 const responseMiddelware = require('../middlewares/responses');
 const fileMiddelware = require('../middlewares/files');
+const notificationsMiddelware = require('../middlewares/notifications');
 
 exports.preregister = [    
     validateDataMiddelware.validator,
@@ -28,8 +29,9 @@ exports.register = [
 ]
 exports.recoveryPassword = [
     validateDataMiddelware.validator,
-    validateDataMiddelware.format,    
+    validateDataMiddelware.format,
     userMiddleware.resetPassword,
+    notificationsMiddelware.sendMail,
     responseMiddelware.responseData
 
 ]

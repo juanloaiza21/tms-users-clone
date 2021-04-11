@@ -35,8 +35,6 @@ async function verifyUser(req, res, next) {
     else{
         next();
     }
-    
-
 }
 
 async function preregisterFiles(req, res, next) {
