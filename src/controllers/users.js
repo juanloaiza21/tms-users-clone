@@ -18,7 +18,8 @@ async function recoveryPassword(data){
         result.response = await succesResponse(200,result.link);
         return result;
     } catch (error) {
-        return errorsResponse(400,"Error Generate Link Verify Email");
+        result.response = await errorsResponse(400,"Error Generating The Link And Verifying the Email");
+        return result;
     }
 }
 

@@ -42,7 +42,7 @@ async function linkVerificationEmail(req, res, next){
 async function recoveryPassword(req, res, next) {
     let result = await userController.recoveryPassword(req.objects.data);
     if(result.response.info.status === 400){
-        req.objects.response =  result;
+        req.objects.response =  result.response;
         return responseMiddleware.responseData(req,res);
     }
     req.objects.response =  result.response;
