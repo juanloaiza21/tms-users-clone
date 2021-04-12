@@ -22,5 +22,7 @@ exports.register = [
 exports.recovery = [
     validateMiddleware.validator,
     validateMiddleware.formatData,
-    userMiddleware.recoveryPassword
+    userMiddleware.recoveryPassword,
+    notificationsMiddleware.recovery,
+    responseMiddleware.responseData
 ]

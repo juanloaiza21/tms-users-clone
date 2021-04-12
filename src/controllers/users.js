@@ -12,8 +12,10 @@ async function preregister(data) {
 }
 
 async function recoveryPassword(data){
+    let  result = {};
     try {
-        let result = await firebase.recoveryPasswordLink(data.email);
+        result.link = await firebase.recoveryPasswordLink(data.email);
+        result.response = await succesResponse(200,result.link);
         return result;
     } catch (error) {
         return errorsResponse(400,"Error Generate Link Verify Email");
@@ -84,5 +86,5 @@ module.exports = {
     recoveryPassword,
     registerUser: registerUser,
     updateDataUser: updateDataUser,
-    verify:verifyEmailLink
+    verify:verifyEmailLink,
 }

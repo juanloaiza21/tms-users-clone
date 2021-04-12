@@ -7,6 +7,13 @@ async function activateEmail(req, res, next) {
     next();
 }
 
+async function recoveryPassword(req, res, next) {
+    let  result =  await notificationsController.recovery(req.objects.data);
+    req.objects.response = result.response;
+    next();
+}
+
 module.exports = {
-    activate: activateEmail
+    activate: activateEmail,
+    recovery: recoveryPassword
 }

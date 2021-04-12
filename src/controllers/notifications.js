@@ -1,5 +1,6 @@
 const libSender =  require('../libs/api');
 const registerTemplate =  require('../models/template/register');
+const recoveryTemplate = require('../models/template/recovery')
 const { succesResponse, errorsResponse } = require('../libs/response');
 const url = process.env.URL_NOTIFICATIONS
 
@@ -19,8 +20,24 @@ async function activeUserNotifications(data){
   
 }
 
+async function resetNotifications(data){
+    let dataFormat = {
+        to:data.email,
+        subject: "Comiagro Notifications",
+        html: recoveryTemplate.recovery(data.link)
+    }
+    let result = {}
+    try {
+        result.link =  await libSender.post(`${url}/email/send`,dataFormat);
+        result.response = await succesResponse(200,"reset password send");
+        return result
+    } catch (error) {
+        result.response = await  errorsResponse(400,"sdsdsds");
+        return result;
+    }
+}
 
 module.exports ={
     activate: activeUserNotifications,
-    recovery: activeUserNotifications
+    recovery: resetNotifications
 }
