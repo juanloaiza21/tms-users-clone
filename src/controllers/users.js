@@ -82,10 +82,22 @@ async function verifyEmailLink(data){
     }
 }
 
+async function verifyUser(data){
+    let result = {};
+    try {
+        result.data =  await firebase.verifyUser(data.email);
+        result.response = await succesResponse(200, result.data.emailVerified)
+    } catch (error) {
+        result.response = await errorsResponse(400,"user not exists");
+    }
+    return result;
+}
+
 module.exports = {
     preregister: preregister,
     recoveryPassword,
     registerUser: registerUser,
     updateDataUser: updateDataUser,
     verify:verifyEmailLink,
+    verifyUser
 }

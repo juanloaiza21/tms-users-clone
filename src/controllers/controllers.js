@@ -26,3 +26,10 @@ exports.recovery = [
     notificationsMiddleware.recovery,
     responseMiddleware.responseData
 ]
+
+exports.verifications = [
+    validateMiddleware.validator,
+    validateMiddleware.formatData,
+    userMiddleware.verify,
+    responseMiddleware.responseData
+];

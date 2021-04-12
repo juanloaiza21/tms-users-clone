@@ -34,6 +34,10 @@ class Firebase {
     async activateUserLink(data){
         return await this.firebaseConfig.auth().generateEmailVerificationLink(data)
     }
+
+    async verifyUser(data){
+        return await this.firebaseConfig.auth().getUserByEmail(data);
+    }
 }
 
 module.exports = {

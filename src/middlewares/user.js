@@ -50,11 +50,22 @@ async function recoveryPassword(req, res, next) {
     next();
 }
 
+async function verificationUser(req, res, next) {
+    let result = await userController.verifyUser(req.objects.data);
+    if(result.response.info.status === 400){
+        req.objects.response =  result.response;
+        return responseMiddleware.responseData(req,res);
+    }
+    req.objects.response =  result.response;
+    req.objects.data.link = result.link;
+    next();
+}
 
 module.exports = {
     preregister: preregister,
     register: register,
     registerOtherData,
     linkVerificationEmail:linkVerificationEmail,
-    recoveryPassword: recoveryPassword
+    recoveryPassword: recoveryPassword,
+    verify:  verificationUser
 }
