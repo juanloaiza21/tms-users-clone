@@ -38,6 +38,10 @@ class Firebase {
     async verifyUser(data){
         return await this.firebaseConfig.auth().getUserByEmail(data);
     }
+
+    async getData(data){
+        return await this.db.collection(this.tableData).doc(data.id).get().data()
+    }
 }
 
 module.exports = {

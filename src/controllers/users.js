@@ -93,11 +93,15 @@ async function verifyUser(data){
     return result;
 }
 
+async function verifyUserDB(data){
+    let result = await await firebase.getData(data);
+}
+
 module.exports = {
     preregister: preregister,
     recoveryPassword,
     registerUser: registerUser,
     updateDataUser: updateDataUser,
     verify:verifyEmailLink,
-    verifyUser
+    verifyUser:verifyUserDB,
 }

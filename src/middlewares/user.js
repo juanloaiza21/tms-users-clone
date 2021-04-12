@@ -61,6 +61,11 @@ async function verificationUser(req, res, next) {
     next();
 }
 
+async function verificateUserDB(req,res, next){
+    let  result = await userController.verifyUser(req.objects.data);
+    next();
+}
+
 module.exports = {
     preregister: preregister,
     register: register,
