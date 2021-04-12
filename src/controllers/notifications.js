@@ -8,7 +8,7 @@ async function activeUserNotifications(data){
     let dataFormat = {
         to:data.user.email,
         subject: "Comiagro Notifications",
-        html: registerTemplate.registerTemplate(data.link)
+        html: registerTemplate.registerTemplate(data.link,data.user.displayName)
     }
     try {
         let sender = await libSender.post(`${url}/email/send`,dataFormat);

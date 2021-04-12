@@ -21,6 +21,6 @@ exports.register = [
 ]
 exports.recovery = [
     validateMiddleware.validator,
-    // validateMiddleware.formatData,
-    // userMiddleware.recoveryPassword
+    validateMiddleware.formatData,
+    userMiddleware.recoveryPassword
 ]

@@ -7,6 +7,6 @@ const {checkSchema} = require('express-validator');
 
 router.post('/preregister',checkSchema(validateSchemaPreregister),controllers.preregister);
 router.post('/register',checkSchema(validateSchemaRegister),controllers.register);
-//router.post('/recovery',checkSchema(validateSchemaRecovery),controllers.recovery);
+router.post('/recovery',checkSchema(validateSchemaRecovery),controllers.recovery);
 
 module.exports = router;
