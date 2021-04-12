@@ -147,7 +147,7 @@ function registerTemplate(url,name) {
           </tr>
         </tbody></table><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="oeGfKG83UnJ2ZN3mrn3fcR" data-mc-module-version="2019-10-22">
           <tbody><tr>
-            <td style="background-color:#ffffff; padding:50px 0px 10px 0px; line-height:30px; text-align:inherit;" height="100%" valign="top" bgcolor="#ffffff"><div><div style="font-family: inherit; text-align: center"><span style="color: #516775; font-size: 28px; font-family: Poppins"><strong>Registro éxitoso</strong></span></div><div></div></div></td>
+            <td style="background-color:#ffffff; padding:50px 0px 10px 0px; line-height:30px; text-align:inherit;" height="100%" valign="top" bgcolor="#ffffff"><div><div style="font-family: inherit; text-align: center"><span style="color: #516775; font-size: 28px; font-family: Poppins"><strong>Registro Exitoso</strong></span></div><div></div></div></td>
           </tr>
         </tbody></table><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="iibEFMKi9EmosMVVxsBUHE" data-mc-module-version="2019-10-22">
           <tbody><tr>
